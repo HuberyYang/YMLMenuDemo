@@ -4,13 +4,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UICollectionView (Yml_Category)
+@interface YMLRotationCell : UICollectionViewCell
 
-/** 菜单半径 */
-@property (strong, nonatomic) NSNumber *largeRadius;
-
-/** 按钮半径 */
-@property (strong, nonatomic) NSNumber *smallRadius;
-
+- (void)updateCellWith:(NSString *)picName;
 
 @end

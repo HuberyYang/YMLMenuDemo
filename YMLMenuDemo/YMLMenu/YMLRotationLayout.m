@@ -1,6 +1,6 @@
 //
-//  Copyright © 2016年 Yml. All rights reserved.
-//
+//  Copyright © 2016年 HuberyYang. All rights reserved.
+/*  😀😀😀 个人主页 ~> http://huberyyang.top , 邮箱: yml_hubery@sina.com 😀😀😀 */
 
 #import "YMLRotationLayout.h"
 
@@ -25,9 +25,9 @@
     _rLength = _itemRadius;
     
     // 设置每个item的大小
-    for (int i = 0; i < _itemCount; i++) {
+    for (int idx = 0; idx < _itemCount; idx ++) {
         
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:0];
         UICollectionViewLayoutAttributes * attris = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
         // 设置item大小
         attris.size = CGSizeMake(_rLength, _rLength);
@@ -41,20 +41,20 @@
          */
         // 计算每个item中心的坐标
         // 算出的x，y值还要减去item自身的半径大小
-        float x = center.x + cosf(2 * M_PI / _itemCount * i + _rotationAngle) * (radius - _rLength / 2.0);
-        float y = center.y + sinf(2 * M_PI / _itemCount * i + _rotationAngle) * (radius - _rLength / 2.0);
+        float x = center.x + cosf(2 * M_PI / _itemCount * idx + _rotationAngle) * (radius - _rLength / 2.0);
+        float y = center.y + sinf(2 * M_PI / _itemCount * idx + _rotationAngle) * (radius - _rLength / 2.0);
         
         attris.center = CGPointMake(x, y);
         [_attributeAttay addObject:attris];
     }
 }
 
-// 设置内容区域的大小
+// contentSize 的大小
 - (CGSize)collectionViewContentSize{
     return self.collectionView.frame.size;
 }
 
-// 返回设置数组
+// cell / header / footer 的frame数组
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     return _attributeAttay;
 }

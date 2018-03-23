@@ -1,6 +1,6 @@
 //
-//  Copyright © 2016年 Yml. All rights reserved.
-//
+//  Copyright © 2016年 HuberyYang. All rights reserved.
+/*  😀😀😀 个人主页 ~> http://huberyyang.top , 邮箱: yml_hubery@sina.com 😀😀😀 */
 
 #import <UIKit/UIKit.h>
 
@@ -15,7 +15,7 @@
 
 @interface YMLRotationViewController : UIViewController
 
-/** 旋转速度倍率，默认为 1.50f */
+/** 旋转速度倍率，默认为1倍 */
 @property (nonatomic, assign) CGFloat rotationRate;
 
 /** 按钮图片名称数组 */

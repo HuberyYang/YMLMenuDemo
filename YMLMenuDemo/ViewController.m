@@ -34,17 +34,18 @@
 
 - (void)showMenu:(UIButton *)sender{
     
-    NSArray *carPicArr = @[@"空调",@"灯具",@"汽车用品",@"汽保工具",@"小车配件",@"大车配件",@"加装改装",@"其他"];
-    
+    NSMutableArray *icons = [NSMutableArray array];
+    for (int idx = 1; idx <= 8; idx ++) {
+        [icons addObject:[NSString stringWithFormat:@"icon_%02d.png",idx]];
+    }
     YMLRotationViewController *rotationVC = [[YMLRotationViewController alloc] init];
-    rotationVC.itemNames = carPicArr;
+    rotationVC.itemNames = icons;
     rotationVC.delegate  = self;
     rotationVC.canRotate = YES;
     [self presentViewController:rotationVC animated:YES completion:nil];
 }
 
 #pragma mark -- YMLRotationViewControllerDelegate
-
 - (void)menuDidSelectedAtItemIndex:(NSInteger)index{
     
     NSLog(@"选中第 %ld 项",index);

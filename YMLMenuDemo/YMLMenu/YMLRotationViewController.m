@@ -7,46 +7,31 @@
 #import "YMLRotationCollectionViewCell.h"
 #import "UICollectionView+Yml_Category.h"
 
-#define COLL_CELLID  @"coll_cellId"
 #define R_SCREEN_WIDTH   [UIScreen mainScreen].bounds.size.width
 #define R_SCREEN_HEIGHT  [UIScreen mainScreen].bounds.size.height
 #define R_TAG  3000
-#define PI 3.14159265358979323846
-#define RadiansToDegrees(x) (180.0 * x / PI)
+#define RadiansToDegrees(x) (180.0 * x / M_PI)
 
 @interface YMLRotationViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewDelegate>
 
 
-/**
- collectionView
- */
+/** collectionView */
 @property (nonatomic, strong) UICollectionView *collectView;
 
-/**
- layout
- */
+/** layout */
 @property (nonatomic, strong) YMLRotationLayout *layout;
 
-/**
- 上一次滑动到的点
- */
+/** 上一次滑动到的点 */
 @property (nonatomic, assign) CGPoint lastPoint;
 
-/**
- collectionView中心点 ，也是菜单的中心点
- */
+/** collectionView中心点 ，也是菜单的中心点 */
 @property (nonatomic, assign) CGPoint centerPoint;
 
-/**
- 相对于初始状态滑动过的角度总和
- */
+/** 相对于初始状态滑动过的角度总和 */
 @property (nonatomic, assign) CGFloat totalRads;
 
-/**
- 按钮半径
- */
+/** 按钮半径 */
 @property (nonatomic, assign) CGFloat itemRadius;
-
 
 
 @end
@@ -57,21 +42,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self makeItemRadius];  //获取item半径
-    
-    [self createCollectionView];  //生成collectionView
-    
-    [self createBackButton];  //返回按钮
-    
-    _canRotate ? [self getNotifacation] : nil;   //是否支持旋转
+    // 获取item半径
+    [self makeItemRadius];
+    // 添加collectionView
+    [self createCollectionView];
+    // 返回按钮
+    [self addBackButton];
+    // 是否支持旋转
+    _canRotate ? [self getNotifacation] : nil;
 }
 
-- (void)createCollectionView
-{
+- (void)createCollectionView{
+    
     _layout = [[YMLRotationLayout alloc] init];
-    
     _layout.itemRadius = _itemRadius;
-    
     _collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, R_SCREEN_WIDTH, R_SCREEN_HEIGHT) collectionViewLayout:_layout];
     
     _collectView.backgroundColor = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1.0];
@@ -83,12 +67,12 @@
     _collectView.largeRadius = [NSString stringWithFormat:@"%f",larRadius];
     _collectView.smallRadius = [NSString stringWithFormat:@"%f",_itemRadius];
     
-    [_collectView registerClass:[YMLRotationCollectionViewCell class] forCellWithReuseIdentifier:COLL_CELLID];
+    [_collectView registerClass:[YMLRotationCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([YMLRotationCollectionViewCell class])];
     
     [self.view addSubview:_collectView];
 }
 
-- (void)createBackButton{
+- (void)addBackButton{
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
     btn.frame = CGRectMake(10, 40, 60, 25);
@@ -96,12 +80,10 @@
     [btn setTitle:@"返回" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(backToFormerPage) forControlEvents:UIControlEventTouchUpInside];
-    
     [self.view addSubview:btn];
 }
 
 - (void)backToFormerPage{
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -140,7 +122,6 @@
     if (_itemNames == nil) {
         _itemNames = [[NSArray alloc] init];
     }
-    
     return _itemNames;
 }
 
@@ -149,7 +130,6 @@
     if (_rotationRate == 0.0f) {
         _rotationRate = 1.50f;
     }
-    
     return _rotationRate;
 }
 
@@ -166,11 +146,11 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    YMLRotationCollectionViewCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:COLL_CELLID forIndexPath:indexPath];
+    YMLRotationCollectionViewCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([YMLRotationCollectionViewCell class]) forIndexPath:indexPath];
     cell.layer.cornerRadius = _itemRadius / 2.0;
     cell.layer.masksToBounds = YES;
     
-    //由于重载了collectionview点击事件，所以需要添加点击手势处理点击事件
+    // 由于重载了collectionview点击事件，所以需要添加点击手势处理点击事件
     [cell addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collectionViewCellClicked:)]];
     cell.tag = R_TAG + indexPath.row;
     
@@ -182,7 +162,6 @@
 - (void)collectionViewCellClicked:(UITapGestureRecognizer *)tap{
     
     NSInteger index = tap.view.tag - R_TAG;
-    
     if (self.delegate) {
         [self.delegate menuDidSelectedAtItemIndex:index];
     }
@@ -190,78 +169,67 @@
 
 #pragma mark -- 按钮滑动，重新布局
 
-//滑动开始
+// 滑动开始
 - (void)touchBegin:(NSNotification *)sender{
     
     _centerPoint = self.collectView.center;
-    
     NSDictionary *dic = sender.userInfo;
     CGPoint point = CGPointMake([dic[@"x"] floatValue], [dic[@"y"] floatValue]);
-    
     _lastPoint = point;
 }
 
-//正在滑动中
+// 正在滑动中
 - (void)touchMoving:(NSNotification *)sender{
     
     NSDictionary *dic = sender.userInfo;
     CGPoint point = CGPointMake([dic[@"x"] floatValue], [dic[@"y"] floatValue]);
     
-    //手指当前所在的点与collectionView中心点x坐标差值
+    // 手指当前所在的点与collectionView中心点x坐标差值
     CGFloat x = point.x - _centerPoint.x;
     
-    //滑动中前后两点Y坐标差值
+    // 滑动中前后两点Y坐标差值
     CGFloat difY = point.y - _lastPoint.y;
     
-    //以collectionView center为中心计算滑动角度
-    CGFloat rads = [self getAngleBetweenLinesWithline1Start:_centerPoint line1End:_lastPoint line2Start:_centerPoint line2End:point];
+    // 以collectionView center为中心计算滑动角度
+    CGFloat rads = [self angleBetweenFirstLineStart:_centerPoint firstLineEnd:_lastPoint andSecondLineStart:_centerPoint secondLineEnd:point];
     
     if (x >= 0) {
         
         if (difY > 0) {
-            
             _totalRads += rads;
-            
         }else{
-            
             _totalRads -= rads;
         }
-        
         
     } else {
         
         if (difY > 0) {
-            
             _totalRads -= rads;
         }else{
-            
             _totalRads += rads;
         }
-        
     }
     
-    //将纯度数转化为π
+    // 将纯度数转化为π
     _layout.rotationAngle = _totalRads / 180.0 * _rotationRate;
     
-    //collectionview 重新布局
+    // 重新布局
     [_layout invalidateLayout];
     
-    //更新上次的滑动点
+    // 更新记录点
     _lastPoint = point;
 }
 
-//两条直线之间的夹角
-- (CGFloat)getAngleBetweenLinesWithline1Start:(CGPoint)line1Start line1End:(CGPoint)line1End line2Start:(CGPoint)line2Start line2End:(CGPoint)line2End{
+// 两条直线之间的夹角
+- (CGFloat)angleBetweenFirstLineStart:(CGPoint)firstLineStart firstLineEnd:(CGPoint)firstLineEnd andSecondLineStart:(CGPoint)secondLineStart secondLineEnd:(CGPoint)secondLineEnd{
     
-    CGFloat a = line1End.x - line1Start.x;
-    CGFloat b = line1End.y - line1Start.y;
-    CGFloat c = line2End.x - line2Start.x;
-    CGFloat d = line2End.y - line2Start.y;
+    CGFloat a = firstLineEnd.x - firstLineStart.x;
+    CGFloat b = firstLineEnd.y - firstLineStart.y;
+    CGFloat c = secondLineEnd.x - secondLineStart.x;
+    CGFloat d = secondLineEnd.y - secondLineStart.y;
     
-    CGFloat rads = acos(((a*c) + (b*d)) / ((sqrt(a*a + b*b)) * (sqrt(c*c + d*d))));
-    
+    CGFloat rads = acos((a * c + b * d) / (sqrt(a * a + b * b) * sqrt(c * c + d * d)));
     return RadiansToDegrees(rads);
-    
 }
 
 

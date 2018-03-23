@@ -5,8 +5,8 @@
 #import "UICollectionView+Yml_Category.h"
 #import <objc/runtime.h>
 
-static const void *largeRadiusKey = &largeRadiusKey;
-static const void *smallRadiusKey = &smallRadiusKey;
+static NSString * const largeRadiusKey = @"largeRadiusKey";
+static NSString * const smallRadiusKey = @"smallRadiusKey";
 
 @implementation UICollectionView (Yml_Category)
 
@@ -19,6 +19,7 @@ static const void *smallRadiusKey = &smallRadiusKey;
     
     CGFloat rLength = sqrt((point.x - centerPoint.x) * (point.x - centerPoint.x) + (point.y - centerPoint.y) * (point.y - centerPoint.y));
     
+    // 手势范围
     if (!(rLength <= [self.largeRadius floatValue] && rLength >= [self.smallRadius floatValue])) {
         return;
     }
@@ -35,6 +36,7 @@ static const void *smallRadiusKey = &smallRadiusKey;
     
     CGFloat rLength = sqrt((point.x - centerPoint.x) * (point.x - centerPoint.x) + (point.y - centerPoint.y) * (point.y - centerPoint.y));
     
+    // 手势范围
     if (!(rLength <= [self.largeRadius floatValue] && rLength >= [self.smallRadius floatValue])) {
         return;
     }
@@ -42,7 +44,7 @@ static const void *smallRadiusKey = &smallRadiusKey;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"touchMoving" object:nil userInfo:@{@"x":[NSString stringWithFormat:@"%f",point.x],@"y":[NSString stringWithFormat:@"%f",point.y]}];
 }
 
-//结束
+// 结束
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
 //    CGPoint centerPoint = self.center;
@@ -51,7 +53,7 @@ static const void *smallRadiusKey = &smallRadiusKey;
 //    CGPoint point = [touch locationInView:self];
 //    
 //    CGFloat rLength = sqrt((point.x - centerPoint.x) * (point.x - centerPoint.x) + (point.y - centerPoint.y) * (point.y - centerPoint.y));
-//    
+      // 手势范围
 //    if (!(rLength <= [self.largeRadius floatValue] && rLength >= [self.smallRadius floatValue])) {
 //        return;
 //    }
@@ -66,7 +68,7 @@ static const void *smallRadiusKey = &smallRadiusKey;
 }
 
 - (NSString *)largeRadius{
-    return objc_getAssociatedObject(self, largeRadiusKey);
+    return objc_getAssociatedObject(self, &largeRadiusKey);
 }
 
 - (void)setSmallRadius:(NSString *)smallRadius{
@@ -74,7 +76,7 @@ static const void *smallRadiusKey = &smallRadiusKey;
 }
 
 - (NSString *)smallRadius{
-    return objc_getAssociatedObject(self, smallRadiusKey);
+    return objc_getAssociatedObject(self, &smallRadiusKey);
 }
 
 

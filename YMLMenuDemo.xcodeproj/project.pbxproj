@@ -17,14 +17,14 @@
 		A2AE9A131E199D7F00DD56C7 /* YMLRotationCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AE9A0D1E199D7F00DD56C7 /* YMLRotationCollectionViewCell.m */; };
 		A2AE9A141E199D7F00DD56C7 /* YMLRotationLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AE9A0F1E199D7F00DD56C7 /* YMLRotationLayout.m */; };
 		A2AE9A151E199D7F00DD56C7 /* YMLRotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AE9A111E199D7F00DD56C7 /* YMLRotationViewController.m */; };
-		A2AE9A1F1E199E2700DD56C7 /* 其他.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A171E199E2700DD56C7 /* 其他.png */; };
-		A2AE9A201E199E2700DD56C7 /* 加装改装.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A181E199E2700DD56C7 /* 加装改装.png */; };
-		A2AE9A211E199E2700DD56C7 /* 大车配件.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A191E199E2700DD56C7 /* 大车配件.png */; };
-		A2AE9A221E199E2700DD56C7 /* 小车配件.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A1A1E199E2700DD56C7 /* 小车配件.png */; };
-		A2AE9A231E199E2700DD56C7 /* 汽保工具.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A1B1E199E2700DD56C7 /* 汽保工具.png */; };
-		A2AE9A241E199E2700DD56C7 /* 汽车用品.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A1C1E199E2700DD56C7 /* 汽车用品.png */; };
-		A2AE9A251E199E2700DD56C7 /* 灯具.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A1D1E199E2700DD56C7 /* 灯具.png */; };
-		A2AE9A261E199E2700DD56C7 /* 空调.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A1E1E199E2700DD56C7 /* 空调.png */; };
+		A2AE9A1F1E199E2700DD56C7 /* icon_08.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A171E199E2700DD56C7 /* icon_08.png */; };
+		A2AE9A201E199E2700DD56C7 /* icon_01.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A181E199E2700DD56C7 /* icon_01.png */; };
+		A2AE9A211E199E2700DD56C7 /* icon_02.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A191E199E2700DD56C7 /* icon_02.png */; };
+		A2AE9A221E199E2700DD56C7 /* icon_03.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A1A1E199E2700DD56C7 /* icon_03.png */; };
+		A2AE9A231E199E2700DD56C7 /* icon_04.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A1B1E199E2700DD56C7 /* icon_04.png */; };
+		A2AE9A241E199E2700DD56C7 /* icon_05.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A1C1E199E2700DD56C7 /* icon_05.png */; };
+		A2AE9A251E199E2700DD56C7 /* icon_06.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A1D1E199E2700DD56C7 /* icon_06.png */; };
+		A2AE9A261E199E2700DD56C7 /* icon_07.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A1E1E199E2700DD56C7 /* icon_07.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,14 +46,14 @@
 		A2AE9A0F1E199D7F00DD56C7 /* YMLRotationLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMLRotationLayout.m; sourceTree = "<group>"; };
 		A2AE9A101E199D7F00DD56C7 /* YMLRotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMLRotationViewController.h; sourceTree = "<group>"; };
 		A2AE9A111E199D7F00DD56C7 /* YMLRotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMLRotationViewController.m; sourceTree = "<group>"; };
-		A2AE9A171E199E2700DD56C7 /* 其他.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "其他.png"; sourceTree = "<group>"; };
-		A2AE9A181E199E2700DD56C7 /* 加装改装.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加装改装.png"; sourceTree = "<group>"; };
-		A2AE9A191E199E2700DD56C7 /* 大车配件.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "大车配件.png"; sourceTree = "<group>"; };
-		A2AE9A1A1E199E2700DD56C7 /* 小车配件.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "小车配件.png"; sourceTree = "<group>"; };
-		A2AE9A1B1E199E2700DD56C7 /* 汽保工具.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "汽保工具.png"; sourceTree = "<group>"; };
-		A2AE9A1C1E199E2700DD56C7 /* 汽车用品.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "汽车用品.png"; sourceTree = "<group>"; };
-		A2AE9A1D1E199E2700DD56C7 /* 灯具.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灯具.png"; sourceTree = "<group>"; };
-		A2AE9A1E1E199E2700DD56C7 /* 空调.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "空调.png"; sourceTree = "<group>"; };
+		A2AE9A171E199E2700DD56C7 /* icon_08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_08.png; sourceTree = "<group>"; };
+		A2AE9A181E199E2700DD56C7 /* icon_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_01.png; sourceTree = "<group>"; };
+		A2AE9A191E199E2700DD56C7 /* icon_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_02.png; sourceTree = "<group>"; };
+		A2AE9A1A1E199E2700DD56C7 /* icon_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_03.png; sourceTree = "<group>"; };
+		A2AE9A1B1E199E2700DD56C7 /* icon_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_04.png; sourceTree = "<group>"; };
+		A2AE9A1C1E199E2700DD56C7 /* icon_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_05.png; sourceTree = "<group>"; };
+		A2AE9A1D1E199E2700DD56C7 /* icon_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_06.png; sourceTree = "<group>"; };
+		A2AE9A1E1E199E2700DD56C7 /* icon_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_07.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,14 +127,14 @@
 		A2AE9A161E199E2700DD56C7 /* Res */ = {
 			isa = PBXGroup;
 			children = (
-				A2AE9A171E199E2700DD56C7 /* 其他.png */,
-				A2AE9A181E199E2700DD56C7 /* 加装改装.png */,
-				A2AE9A191E199E2700DD56C7 /* 大车配件.png */,
-				A2AE9A1A1E199E2700DD56C7 /* 小车配件.png */,
-				A2AE9A1B1E199E2700DD56C7 /* 汽保工具.png */,
-				A2AE9A1C1E199E2700DD56C7 /* 汽车用品.png */,
-				A2AE9A1D1E199E2700DD56C7 /* 灯具.png */,
-				A2AE9A1E1E199E2700DD56C7 /* 空调.png */,
+				A2AE9A171E199E2700DD56C7 /* icon_08.png */,
+				A2AE9A181E199E2700DD56C7 /* icon_01.png */,
+				A2AE9A191E199E2700DD56C7 /* icon_02.png */,
+				A2AE9A1A1E199E2700DD56C7 /* icon_03.png */,
+				A2AE9A1B1E199E2700DD56C7 /* icon_04.png */,
+				A2AE9A1C1E199E2700DD56C7 /* icon_05.png */,
+				A2AE9A1D1E199E2700DD56C7 /* icon_06.png */,
+				A2AE9A1E1E199E2700DD56C7 /* icon_07.png */,
 			);
 			path = Res;
 			sourceTree = "<group>";
@@ -198,16 +198,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2AE9A021E199D2B00DD56C7 /* LaunchScreen.storyboard in Resources */,
-				A2AE9A231E199E2700DD56C7 /* 汽保工具.png in Resources */,
-				A2AE9A211E199E2700DD56C7 /* 大车配件.png in Resources */,
-				A2AE9A1F1E199E2700DD56C7 /* 其他.png in Resources */,
+				A2AE9A231E199E2700DD56C7 /* icon_04.png in Resources */,
+				A2AE9A211E199E2700DD56C7 /* icon_02.png in Resources */,
+				A2AE9A1F1E199E2700DD56C7 /* icon_08.png in Resources */,
 				A2AE99FF1E199D2B00DD56C7 /* Assets.xcassets in Resources */,
-				A2AE9A251E199E2700DD56C7 /* 灯具.png in Resources */,
-				A2AE9A201E199E2700DD56C7 /* 加装改装.png in Resources */,
-				A2AE9A221E199E2700DD56C7 /* 小车配件.png in Resources */,
-				A2AE9A261E199E2700DD56C7 /* 空调.png in Resources */,
+				A2AE9A251E199E2700DD56C7 /* icon_06.png in Resources */,
+				A2AE9A201E199E2700DD56C7 /* icon_01.png in Resources */,
+				A2AE9A221E199E2700DD56C7 /* icon_03.png in Resources */,
+				A2AE9A261E199E2700DD56C7 /* icon_07.png in Resources */,
 				A2AE99FD1E199D2B00DD56C7 /* Main.storyboard in Resources */,
-				A2AE9A241E199E2700DD56C7 /* 汽车用品.png in Resources */,
+				A2AE9A241E199E2700DD56C7 /* icon_05.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

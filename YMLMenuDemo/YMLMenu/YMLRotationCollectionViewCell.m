@@ -15,7 +15,6 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     
     if (self == [super initWithFrame:frame]) {
-        
         _carImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         _carImageView.userInteractionEnabled = YES;
         [self addSubview:_carImageView];
@@ -24,7 +23,6 @@
 }
 
 - (void)updateCellWith:(NSString *)picName{
-//    self.carImageView.image = [[UIImage imageNamed:picName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.carImageView.image = [UIImage imageNamed:picName];
 }
 

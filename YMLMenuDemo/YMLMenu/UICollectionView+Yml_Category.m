@@ -42,23 +42,6 @@ static NSString * const smallRadiusKey = @"smallRadiusKey";
     [[NSNotificationCenter defaultCenter] postNotificationName:@"touchMoving" object:nil userInfo:@{@"x":[NSString stringWithFormat:@"%f",point.x],@"y":[NSString stringWithFormat:@"%f",point.y]}];
 }
 
-// 结束
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
-//    CGPoint centerPoint = self.center;
-//    UITouch *touch = touches.anyObject;
-//    CGPoint point = [touch locationInView:self];
-//    
-//    CGFloat rLength = sqrt((point.x - centerPoint.x) * (point.x - centerPoint.x) + (point.y - centerPoint.y) * (point.y - centerPoint.y));
-      // 手势范围限制
-//    if (!(rLength <= [self.largeRadius floatValue] && rLength >= [self.smallRadius floatValue])) {
-//        return;
-//    }
-    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"touchEnd" object:nil userInfo:@{@"x":[NSString stringWithFormat:@"%f",point.x],@"y":[NSString stringWithFormat:@"%f",point.y]}];
-    
-}
-
 
 - (void)setLargeRadius:(NSString *)largeRadius{
     objc_setAssociatedObject(self, &largeRadiusKey, largeRadius, OBJC_ASSOCIATION_RETAIN_NONATOMIC);

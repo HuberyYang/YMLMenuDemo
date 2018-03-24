@@ -8,9 +8,9 @@
 
 
 /** 按钮半径 */
-@property (nonatomic,assign) CGFloat itemRadius;
+@property (assign, nonatomic) CGFloat itemRadius;
 
 /** 按钮中心相对菜单中心旋转角度*/
-@property (nonatomic,assign) CGFloat rotationAngle;
+@property (assign, nonatomic) CGFloat rotationAngle;
 
 @end

@@ -41,14 +41,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 获取item半径
+    // 计算菜单、按钮的半径
     [self makeItemRadius];
     // 添加collectionView
     [self createCollectionView];
     // 返回按钮
     [self addBackButton];
-    // 是否支持旋转
-    _canRotate ? [self addNotifacations] : nil;
+    // 添加通知
+    [self addNotifacations];
+}
+
+// 按钮半径设置，可根据需求修改
+- (void)makeItemRadius{
+    
+    if (_itemNames.count == 1) {
+        _itemRadius = R_SCREEN_WIDTH / 2.2;
+    } else if (_itemNames.count == 2){
+        _itemRadius = R_SCREEN_WIDTH / 4.0;
+    } else {
+        CGFloat larRadius = R_SCREEN_WIDTH / 2.2;
+        double perRadius = 2 * M_PI / _itemNames.count;
+        _itemRadius = (larRadius * fabs(sin(perRadius)) - 10) / (fabs(sin(perRadius)) + 1) ;
+    }
 }
 
 - (void)createCollectionView{
@@ -91,23 +105,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(touchMoving:) name:@"touchMoving" object:nil];
 }
 
-- (void)makeItemRadius{
-    
-    if (_rotationRate == 0.0f) {
-        _rotationRate = 1.0f;
-    }
-    
-    if (_itemNames == nil || _itemNames.count == 0) {
-        _itemRadius = 60.0f;
-    } else if (_itemNames.count == 1 || _itemNames.count == 2){
-        _itemRadius = R_SCREEN_WIDTH / 2.2;
-    } else {
-        CGFloat larRadius = R_SCREEN_WIDTH / 2.2;
-        double perRadius = 2 * M_PI / _itemNames.count;
-        _itemRadius = (larRadius * fabs(sin(perRadius)) - 10) / (fabs(sin(perRadius)) + 1) ;
-    }
-}
-
 #pragma mark -- UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _itemNames ?  _itemNames.count : 0;
@@ -135,10 +132,9 @@
 }
 
 #pragma mark -- 按钮滑动，重新布局
-
 // 滑动开始
 - (void)touchBegin:(NSNotification *)sender{
-    
+    if (!_rotate) return;
     _centerPoint = self.collectionView.center;
     NSDictionary *dic = sender.userInfo;
     CGPoint point = CGPointMake([dic[@"x"] floatValue], [dic[@"y"] floatValue]);
@@ -147,38 +143,25 @@
 
 // 正在滑动中
 - (void)touchMoving:(NSNotification *)sender{
-    
+    if (!_rotate) return;
     NSDictionary *dic = sender.userInfo;
     CGPoint point = CGPointMake([dic[@"x"] floatValue], [dic[@"y"] floatValue]);
-    
-    // 手指当前所在的点与collectionView中心点x坐标差值
-    CGFloat x = point.x - _centerPoint.x;
-    
-    // 滑动中前后两点Y坐标差值
-    CGFloat difY = point.y - _lastPoint.y;
     
     // 以collectionView center为中心计算滑动角度
     CGFloat rads = [self angleBetweenFirstLineStart:_centerPoint firstLineEnd:_lastPoint andSecondLineStart:_centerPoint secondLineEnd:point];
     
-    if (x >= 0) {
+    if (_lastPoint.x != _centerPoint.x && point.x != _centerPoint.x) {
         
-        if (difY > 0) {
+        CGFloat k1 = (_lastPoint.y - _centerPoint.y) / (_lastPoint.x - _centerPoint.x);
+        CGFloat k2 = (point.y - _centerPoint.y) / (point.x - _centerPoint.x);
+        if (k2 > k1) {
             _totalRads += rads;
-        }else{
+        } else {
             _totalRads -= rads;
-        }
-        
-    } else {
-        
-        if (difY > 0) {
-            _totalRads -= rads;
-        }else{
-            _totalRads += rads;
         }
     }
     
-    // 将纯度数转化为π
-    _layout.rotationAngle = _totalRads * _rotationRate;
+    _layout.rotationAngle = _totalRads;
     // 重新布局
     [_layout invalidateLayout];
     

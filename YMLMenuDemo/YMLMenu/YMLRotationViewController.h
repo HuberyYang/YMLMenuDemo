@@ -15,17 +15,14 @@
 
 @interface YMLRotationViewController : UIViewController
 
-/** 旋转速度倍率，默认为1倍 */
-@property (nonatomic, assign) CGFloat rotationRate;
-
 /** 按钮图片名称数组 */
-@property (nonatomic, strong) NSArray *itemNames;
+@property (strong, nonatomic) NSArray<NSString *> *itemNames;
 
 /** 是否可以旋转,默认为NO */
-@property (nonatomic, assign) BOOL canRotate;
+@property (assign, nonatomic) BOOL rotate;
 
 /** 代理 */
-@property (nonatomic,weak) id<YMLRotationViewControllerDelegate>delegate;
+@property (weak, nonatomic) id<YMLRotationViewControllerDelegate>delegate;
 
 
 

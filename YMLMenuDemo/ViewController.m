@@ -41,14 +41,15 @@
     YMLRotationViewController *rotationVC = [[YMLRotationViewController alloc] init];
     rotationVC.itemNames = icons;
     rotationVC.delegate  = self;
-    rotationVC.canRotate = YES;
+    rotationVC.rotate = YES;
     [self presentViewController:rotationVC animated:YES completion:nil];
 }
 
 #pragma mark -- YMLRotationViewControllerDelegate
 - (void)menuDidSelectedAtItemIndex:(NSInteger)index{
     
-    NSLog(@"选中第 %ld 项",index);
+    NSString *msg = [NSString stringWithFormat:@"已选择 index = %ld",index];
+    NSLog(@"%@",msg);
     
 }
 

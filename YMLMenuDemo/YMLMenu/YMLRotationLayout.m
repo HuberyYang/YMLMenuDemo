@@ -31,20 +31,26 @@
         UICollectionViewLayoutAttributes * attris = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
         // 设置item大小
         attris.size = CGSizeMake(_rLength, _rLength);
-        // 计算每个item的圆心位置
-        /*
-         .
-         . .
-         .   . r
-         .     .
-         .........
-         */
-        // 计算每个item中心的坐标
-        // 算出的x，y值还要减去item自身的半径大小
-        float x = center.x + cosf(2 * M_PI / _itemCount * idx + _rotationAngle) * (radius - _rLength / 2.0);
-        float y = center.y + sinf(2 * M_PI / _itemCount * idx + _rotationAngle) * (radius - _rLength / 2.0);
         
-        attris.center = CGPointMake(x, y);
+        if (_itemCount == 1) {            
+            attris.center = self.collectionView.center;
+        } else {
+            
+            // 计算每个item的圆心位置
+            /*
+             .
+             . .
+             .   . r
+             .     .
+             .........
+             */
+            // 计算每个item中心的坐标
+            // 算出的x，y值还要减去item自身的半径大小
+            float x = center.x + cosf(2 * M_PI / _itemCount * idx + _rotationAngle) * (radius - _rLength / 2.0);
+            float y = center.y + sinf(2 * M_PI / _itemCount * idx + _rotationAngle) * (radius - _rLength / 2.0);
+            
+            attris.center = CGPointMake(x, y);
+        }
         [_attributeAttay addObject:attris];
     }
 }

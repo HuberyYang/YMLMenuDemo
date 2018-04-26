@@ -1,6 +1,6 @@
 # YMLMenuDemo
 Rotatable menu.
-利用 `UICollectionView` 强大的自定义布局能力创建可以自由旋转的选择菜单，可以直接将 `YMLMenu` 文件夹拖入项目中使用，也可以根据需要自定义修改。
+利用 `UICollectionViewLayout` 强大的自定义布局能力创建可以自由旋转的选择菜单，可以直接将 `YMLMenu` 文件夹拖入项目中使用，也可以根据需要自定义修改。
 
 __下面是效果图：__
 

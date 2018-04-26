@@ -48,7 +48,7 @@
 #pragma mark -- YMLRotationViewControllerDelegate
 - (void)menuDidSelectedAtItemIndex:(NSInteger)index{
     
-    NSString *msg = [NSString stringWithFormat:@"已选择 index = %ld",index];
+    NSString *msg = [NSString stringWithFormat:@"已选择 index = %ld",(long)index];
     NSLog(@"%@",msg);
     
 }

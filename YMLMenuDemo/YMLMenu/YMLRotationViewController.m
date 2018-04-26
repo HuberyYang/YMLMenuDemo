@@ -1,6 +1,6 @@
 //
 //  Copyright © 2016年 HuberyYang. All rights reserved.
-/*  😀😀😀 个人主页 ~> http://huberyyang.top , 邮箱: yml_hubery@sina.com 😀😀😀 */
+/*  😀😀😀 个人主页 ~> http://huberyyang.com , 邮箱 ~> yml_hubery@sina.com 😀😀😀 */
 
 #import "YMLRotationViewController.h"
 #import "YMLRotationLayout.h"
@@ -178,7 +178,7 @@
     CGFloat b2 = secondLineEnd.y - secondLineStart.y;
     
     // 夹角余弦
-    double cos = (a1 * a2 + b1 * b2) / (sqrt(pow(a1, 2) + pow(b1, 2)) * sqrt(pow(a2, 2) + pow(b2, 2)));
+    double cos = (a1 * a2 + b1 * b2) / (sqrt(pow(a1, 2.0) + pow(b1, 2.0)) * sqrt(pow(a2, 2.0) + pow(b2, 2.0)));
     // 浮点计算结果可能超过1，需要控制
     cos = cos > 1 ? 1 : cos;
     return acos(cos);

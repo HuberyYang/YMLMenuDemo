@@ -126,7 +126,7 @@
 - (void)collectionViewCellClicked:(UITapGestureRecognizer *)tap{
     
     NSInteger index = tap.view.tag - R_TAG;
-    if (self.delegate) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(menuDidSelectedAtItemIndex:)]) {
         [self.delegate menuDidSelectedAtItemIndex:index];
     }
 }
@@ -148,7 +148,10 @@
     CGPoint point = CGPointMake([dic[@"x"] floatValue], [dic[@"y"] floatValue]);
     
     // 以collectionView center为中心计算滑动角度
-    CGFloat rads = [self angleBetweenFirstLineStart:_centerPoint firstLineEnd:_lastPoint andSecondLineStart:_centerPoint secondLineEnd:point];
+    CGFloat rads = [self angleBetweenFirstLineStart:_centerPoint
+                                       firstLineEnd:_lastPoint
+                                 andSecondLineStart:_centerPoint
+                                      secondLineEnd:point];
     
     if (_lastPoint.x != _centerPoint.x && point.x != _centerPoint.x) {
         
@@ -170,8 +173,11 @@
 }
 
 // 两条直线之间的夹角
-- (CGFloat)angleBetweenFirstLineStart:(CGPoint)firstLineStart firstLineEnd:(CGPoint)firstLineEnd andSecondLineStart:(CGPoint)secondLineStart secondLineEnd:(CGPoint)secondLineEnd{
-    
+- (CGFloat)angleBetweenFirstLineStart:(CGPoint)firstLineStart
+                         firstLineEnd:(CGPoint)firstLineEnd
+                   andSecondLineStart:(CGPoint)secondLineStart
+                        secondLineEnd:(CGPoint)secondLineEnd
+{
     CGFloat a1 = firstLineEnd.x - firstLineStart.x;
     CGFloat b1 = firstLineEnd.y - firstLineStart.y;
     CGFloat a2 = secondLineEnd.x - secondLineStart.x;

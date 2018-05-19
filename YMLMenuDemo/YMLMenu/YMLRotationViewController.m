@@ -1,6 +1,6 @@
 //
 //  Copyright © 2016年 HuberyYang. All rights reserved.
-/*  😀😀😀 个人主页 ~> http://huberyyang.com , 邮箱 ~> yml_hubery@sina.com 😀😀😀 */
+/*  😀😀😀 Blog ~> http://huberyyang.com , Email ~> yml_hubery@sina.com 😀😀😀 */
 
 #import "YMLRotationViewController.h"
 #import "YMLRotationLayout.h"

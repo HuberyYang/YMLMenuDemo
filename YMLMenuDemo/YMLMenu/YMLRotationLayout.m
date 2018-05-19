@@ -6,7 +6,7 @@
 
 @implementation YMLRotationLayout{
     
-    NSMutableArray * _attributeAttay;
+    NSMutableArray * _attributes;
     CGFloat _rLength;
     NSInteger _itemCount;
 }
@@ -16,7 +16,7 @@
     
     // 按钮个数
     _itemCount = (int)[self.collectionView numberOfItemsInSection:0];
-    _attributeAttay = [[NSMutableArray alloc] init];
+    _attributes = [[NSMutableArray alloc] init];
     // 先设定大圆的半径 取长和宽最短的
     CGFloat radius = MIN(self.collectionView.frame.size.width, self.collectionView.frame.size.height) / 2.2;
     // 圆心位置
@@ -51,7 +51,7 @@
             
             attris.center = CGPointMake(x, y);
         }
-        [_attributeAttay addObject:attris];
+        [_attributes addObject:attris];
     }
 }
 
@@ -62,7 +62,7 @@
 
 // cell / header / footer 的frame数组
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
-    return _attributeAttay;
+    return _attributes;
 }
 
 

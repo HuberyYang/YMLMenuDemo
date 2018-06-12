@@ -117,8 +117,7 @@
     // 由于重载了collectionview点击事件，所以需要添加点击手势处理点击事件
     [cell addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collectionViewCellClicked:)]];
     cell.tag = R_TAG + indexPath.row;
-    
-    [cell updateCellWith:[_itemNames objectAtIndex:indexPath.row]];
+    [cell updateCellWithPicture:[_itemNames objectAtIndex:indexPath.row]];
     
     return cell;
 }

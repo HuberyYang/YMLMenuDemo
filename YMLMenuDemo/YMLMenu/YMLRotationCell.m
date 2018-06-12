@@ -27,13 +27,14 @@
     return self;
 }
 
-- (void)updateCellWith:(NSString *)picName{
-    self.imageV.image = [UIImage imageNamed:picName];
+- (void)updateCellWithPicture:(NSString *)picture {
+    self.imageV.image = [UIImage imageNamed:picture];
 }
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
 }
 
 @end

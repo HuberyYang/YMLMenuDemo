@@ -6,6 +6,6 @@
 
 @interface YMLRotationCell : UICollectionViewCell
 
-- (void)updateCellWith:(NSString *)picName;
+- (void)updateCellWithPicture:(NSString *)picture;
 
 @end

@@ -7,7 +7,7 @@
 @interface YMLRotationLayout : UICollectionViewLayout
 
 
-/** 按钮半径 */
+/** 圆环上按钮直径 */
 @property (assign, nonatomic) CGFloat itemRadius;
 
 /** 按钮中心相对菜单中心旋转角度*/

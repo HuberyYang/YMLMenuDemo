@@ -13,7 +13,6 @@
 		A2AE99FD1E199D2B00DD56C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2AE99FB1E199D2B00DD56C7 /* Main.storyboard */; };
 		A2AE99FF1E199D2B00DD56C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2AE99FE1E199D2B00DD56C7 /* Assets.xcassets */; };
 		A2AE9A021E199D2B00DD56C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2AE9A001E199D2B00DD56C7 /* LaunchScreen.storyboard */; };
-		A2AE9A121E199D7F00DD56C7 /* UICollectionView+Yml_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AE9A0B1E199D7F00DD56C7 /* UICollectionView+Yml_Category.m */; };
 		A2AE9A131E199D7F00DD56C7 /* YMLRotationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AE9A0D1E199D7F00DD56C7 /* YMLRotationCell.m */; };
 		A2AE9A141E199D7F00DD56C7 /* YMLRotationLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AE9A0F1E199D7F00DD56C7 /* YMLRotationLayout.m */; };
 		A2AE9A151E199D7F00DD56C7 /* YMLRotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AE9A111E199D7F00DD56C7 /* YMLRotationViewController.m */; };
@@ -38,8 +37,6 @@
 		A2AE99FE1E199D2B00DD56C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2AE9A011E199D2B00DD56C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2AE9A031E199D2B00DD56C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2AE9A0A1E199D7F00DD56C7 /* UICollectionView+Yml_Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+Yml_Category.h"; sourceTree = "<group>"; };
-		A2AE9A0B1E199D7F00DD56C7 /* UICollectionView+Yml_Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+Yml_Category.m"; sourceTree = "<group>"; };
 		A2AE9A0C1E199D7F00DD56C7 /* YMLRotationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMLRotationCell.h; sourceTree = "<group>"; };
 		A2AE9A0D1E199D7F00DD56C7 /* YMLRotationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMLRotationCell.m; sourceTree = "<group>"; };
 		A2AE9A0E1E199D7F00DD56C7 /* YMLRotationLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMLRotationLayout.h; sourceTree = "<group>"; };
@@ -118,8 +115,6 @@
 				A2AE9A0F1E199D7F00DD56C7 /* YMLRotationLayout.m */,
 				A2AE9A0C1E199D7F00DD56C7 /* YMLRotationCell.h */,
 				A2AE9A0D1E199D7F00DD56C7 /* YMLRotationCell.m */,
-				A2AE9A0A1E199D7F00DD56C7 /* UICollectionView+Yml_Category.h */,
-				A2AE9A0B1E199D7F00DD56C7 /* UICollectionView+Yml_Category.m */,
 			);
 			path = YMLMenu;
 			sourceTree = "<group>";
@@ -170,7 +165,7 @@
 				TargetAttributes = {
 					A2AE99EE1E199D2B00DD56C7 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = QCB8SM34Y5;
+						DevelopmentTeam = T6F2MR6Z92;
 					};
 				};
 			};
@@ -222,7 +217,6 @@
 				A2AE9A131E199D7F00DD56C7 /* YMLRotationCell.m in Sources */,
 				A2AE9A141E199D7F00DD56C7 /* YMLRotationLayout.m in Sources */,
 				A2AE9A151E199D7F00DD56C7 /* YMLRotationViewController.m in Sources */,
-				A2AE9A121E199D7F00DD56C7 /* UICollectionView+Yml_Category.m in Sources */,
 				A2AE99F71E199D2B00DD56C7 /* AppDelegate.m in Sources */,
 				A2AE99F41E199D2B00DD56C7 /* main.m in Sources */,
 			);
@@ -334,7 +328,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QCB8SM34Y5;
+				DEVELOPMENT_TEAM = T6F2MR6Z92;
 				INFOPLIST_FILE = YMLMenuDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -347,7 +341,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QCB8SM34Y5;
+				DEVELOPMENT_TEAM = T6F2MR6Z92;
 				INFOPLIST_FILE = YMLMenuDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

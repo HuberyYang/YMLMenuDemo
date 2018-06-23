@@ -5,13 +5,11 @@
 #import "YMLRotationViewController.h"
 #import "YMLRotationLayout.h"
 #import "YMLRotationCell.h"
-#import "UICollectionView+Yml_Category.h"
 
 #define R_SCREEN_WIDTH   [UIScreen mainScreen].bounds.size.width
 #define R_SCREEN_HEIGHT  [UIScreen mainScreen].bounds.size.height
-#define R_TAG  3000
 
-@interface YMLRotationViewController ()<UICollectionViewDataSource>
+@interface YMLRotationViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIGestureRecognizerDelegate>
 
 
 /** collectionView */
@@ -29,8 +27,11 @@
 /** 相对于初始状态滑动过的角度总和 */
 @property (assign, nonatomic) CGFloat totalRads;
 
-/** 按钮半径 */
+/** 圆环上按钮直径 */
 @property (assign, nonatomic) CGFloat itemRadius;
+
+/** 圆环外径 */
+@property (assign, nonatomic) CGFloat larRadius;
 
 
 @end
@@ -41,18 +42,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 计算菜单、按钮的半径
-    [self makeItemRadius];
-    // 添加collectionView
-    [self createCollectionView];
     // 返回按钮
     [self addBackButton];
-    // 添加通知
-    [self addNotifacations];
+    // 计算菜单、按钮的半径
+    [self calculateItemRadius];
+    // 添加collectionView
+    [self createCollectionView];
+}
+
+- (void)addBackButton{
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+    btn.frame = CGRectMake(10, 40, 60, 25);
+    btn.backgroundColor = [UIColor redColor];
+    [btn setTitle:@"返回" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(backToFormerPage) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+}
+
+- (void)backToFormerPage{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // 按钮半径设置，可根据需求修改
-- (void)makeItemRadius{
+- (void)calculateItemRadius{
     
     if (_itemNames.count == 1) {
         _itemRadius = R_SCREEN_WIDTH / 2.2;
@@ -72,37 +86,19 @@
     _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, R_SCREEN_WIDTH, R_SCREEN_HEIGHT) collectionViewLayout:_layout];
     _collectionView.backgroundColor = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1.0];
     _collectionView.dataSource = self;
+    _collectionView.delegate = self;
     [_collectionView registerClass:[YMLRotationCell class] forCellWithReuseIdentifier:NSStringFromClass([YMLRotationCell class])];
     [self.view addSubview:_collectionView];
     
-    CGFloat larRadius = MIN(self.collectionView.frame.size.width, self.collectionView.frame.size.height)/2.2;
-    _collectionView.largeRadius = @(larRadius);
-    _collectionView.smallRadius = @(_itemRadius);
-}
-
-- (void)addBackButton{
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(menuBeingPaned:)];
+    pan.delegate = self;
+    [_collectionView addGestureRecognizer:pan];
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
-    btn.frame = CGRectMake(10, 40, 60, 25);
-    btn.backgroundColor = [UIColor redColor];
-    [btn setTitle:@"返回" forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(backToFormerPage) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-}
-
-- (void)backToFormerPage{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-// 添加通知
-- (void)addNotifacations{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(touchBegin:)  name:@"touchBegin" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(touchMoving:) name:@"touchMoving" object:nil];
+    // 设置滑动中心点
+    _centerPoint = _collectionView.center;
+    // 圆环外径
+    CGFloat larRadius = MIN(self.collectionView.frame.size.width, self.collectionView.frame.size.height) / 2.2;
+    _larRadius = larRadius;
 }
 
 #pragma mark -- UICollectionViewDataSource
@@ -113,38 +109,51 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     YMLRotationCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([YMLRotationCell class]) forIndexPath:indexPath];
-    
-    // 由于重载了collectionview点击事件，所以需要添加点击手势处理点击事件
-    [cell addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collectionViewCellClicked:)]];
-    cell.tag = R_TAG + indexPath.row;
     [cell updateCellWithPicture:[_itemNames objectAtIndex:indexPath.row]];
     
     return cell;
 }
 
-- (void)collectionViewCellClicked:(UITapGestureRecognizer *)tap{
-    
-    NSInteger index = tap.view.tag - R_TAG;
+#pragma mark -- UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.delegate && [self.delegate respondsToSelector:@selector(menuDidSelectedAtItemIndex:)]) {
-        [self.delegate menuDidSelectedAtItemIndex:index];
+        [self.delegate menuDidSelectedAtItemIndex:indexPath.row];
     }
 }
 
-#pragma mark -- 按钮滑动，重新布局
-// 滑动开始
-- (void)touchBegin:(NSNotification *)sender{
+#pragma mark -- UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    // 初始滑动时记录点为当前点
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+        CGPoint point = [gestureRecognizer locationInView:gestureRecognizer.view];
+        _lastPoint = point;
+    }
+    return YES;
+}
+
+#pragma mark -- 菜单滑动，重新布局
+- (void)menuBeingPaned:(UIPanGestureRecognizer *)panGR {
     if (!_rotate) return;
-    _centerPoint = self.collectionView.center;
-    NSDictionary *dic = sender.userInfo;
-    CGPoint point = CGPointMake([dic[@"x"] floatValue], [dic[@"y"] floatValue]);
-    _lastPoint = point;
+    
+    CGPoint point = [panGR locationInView:panGR.view];
+    CGFloat rLength = sqrt(pow((point.x - _centerPoint.x), 2.0)  +  pow((point.y - _centerPoint.y), 2.0));
+    
+    // 手势范围
+    if (rLength <= _larRadius && rLength >= _larRadius - _itemRadius) {
+        [self touchMoving:point];
+    }
+    // 由范围外进入范围内时将当前点赋值于记录点
+    else if (_lastPoint.x == -100 && _lastPoint.y == -100) {
+        _lastPoint = point;
+    }
+    // 由范围内进入范围外时清除记录点
+    else {
+        _lastPoint = CGPointMake(-100, -100);
+    }
 }
 
 // 正在滑动中
-- (void)touchMoving:(NSNotification *)sender{
-    if (!_rotate) return;
-    NSDictionary *dic = sender.userInfo;
-    CGPoint point = CGPointMake([dic[@"x"] floatValue], [dic[@"y"] floatValue]);
+- (void)touchMoving:(CGPoint )point{
     
     // 以collectionView center为中心计算滑动角度
     CGFloat rads = [self angleBetweenFirstLineStart:_centerPoint
@@ -153,7 +162,7 @@
                                       secondLineEnd:point];
     
     if (_lastPoint.x != _centerPoint.x && point.x != _centerPoint.x) {
-        
+
         CGFloat k1 = (_lastPoint.y - _centerPoint.y) / (_lastPoint.x - _centerPoint.x);
         CGFloat k2 = (point.y - _centerPoint.y) / (point.x - _centerPoint.x);
         if (k2 > k1) {
